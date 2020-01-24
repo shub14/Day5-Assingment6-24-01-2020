@@ -99,8 +99,8 @@ public class EcommerceUI {
 		Scanner sc=new Scanner(System.in);
 		String ch=null;
 		EcommerceUI e=new EcommerceUI();
-		/*while(true)
-		{*/
+		while(true)
+		{
 			System.out.println("Enter Your Choice");
 			System.out.println("1. Registring New Customer");
 			System.out.println("2. Login Customer");
@@ -141,7 +141,7 @@ public class EcommerceUI {
 					System.exit(0);
 				}
 			}
-		//}
+		}
 	}
 
 }
