@@ -47,7 +47,7 @@ public class EcommerceUI {
 			if(res.next()!=false)
 			{	System.out.println("Login Successfull "+"Welcome "+c.getName());
 			 	System.out.println("Do you want to update or delete customer.Chooose option"
-			 			+ "1: Update,2: Delete");
+			 			+ "1: Delete,2: Update");
 				int choice =sc.nextInt();
 			 
 				if(choice==1)
@@ -59,7 +59,7 @@ public class EcommerceUI {
 						System.out.println("Customer Record deletion unsuccessful");
 				}
 				else if(choice==2) {
-					System.out.println("please type the id of the customer you want update");
+				
 					c.getId();
 					System.out.println("enter the new email");
 					c.setEmail(sc.next());
