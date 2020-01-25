@@ -45,28 +45,44 @@ public class EcommerceUI {
 		ResultSet res= service.loginCustomer(c);
 		try {
 			if(res.next()!=false)
-				System.out.println("Login Successfull");
+			{	System.out.println("Login Successfull "+"Welcome "+c.getName());
+			 	System.out.println("Do you want to update or delete customer.Chooose option"
+			 			+ "1: Update,2: Delete");
+				int choice =sc.nextInt();
+			 
+				if(choice==1)
+				{	
+					c.getId();
+					if(service.deleteCustomer(c)==true) 
+						System.out.println("Customer record deleted");
+					else 
+						System.out.println("Customer Record deletion unsuccessful");
+				}
+				else if(choice==2) {
+					System.out.println("please type the id of the customer you want update");
+					c.getId();
+					System.out.println("enter the new email");
+					c.setEmail(sc.next());
+					System.out.println("enter the new address");
+					c.setAddress(sc.next());
+					System.out.println("enter the new mobile no.");
+					c.setMobileno(sc.next());
+					if(service.updateCustomer(c)==true)
+						System.out.println("Customer Details updated succesfully");
+					else
+						System.out.println("Sorry customer details not updated");
+					
+					}
+				
+			}
 			else
-				System.out.println("customer not found!!,PLEASE REGISTER\n\n");
+			{	System.out.println("customer not found!!,PLEASE REGISTER\n\n");
 					this.registerCustomer();
-			
-		} catch (Exception e) {
+			}		
+		}
+		 catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	public void updateCustomer() {
-		System.out.println("please type the id of the customer you want update");
-		c.setId(sc.nextInt());
-		System.out.println("enter the new email");
-		c.setEmail(sc.next());
-		System.out.println("enter the new address");
-		c.setAddress(sc.next());
-		System.out.println("enter the new mobile no.");
-		c.setMobileno(sc.next());
-		if(service.updateCustomer(c)==true)
-			System.out.println("Customer Details updated succesfully");
-		else
-			System.out.println("Sorry customer details not updated");
 	}
 	public void viewCustomer() {
 		System.out.println("please type the id of the customer you want view");
@@ -86,15 +102,7 @@ public class EcommerceUI {
 			e.printStackTrace();
 		}
 	}
-	public void deleteCustomer() {
-		System.out.println("please type id of the customer you want to delete");
-		c.setId(sc.nextInt());
-		if(service.deleteCustomer(c)==true) 
-			System.out.println("Customer record deleted");
-		else 
-			System.out.println("Customer Record deletion unsuccessful");		
-		
-	}
+
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		String ch=null;
@@ -105,9 +113,7 @@ public class EcommerceUI {
 			System.out.println("1. Registring New Customer");
 			System.out.println("2. Login Customer");
 			System.out.println("3. View Existing Customer");
-			System.out.println("4. Delete Customer");
-			System.out.println("5. Update Customer");
-			System.out.println("6. Exit");
+			System.out.println("4. Exit");
 			ch=sc.next();
 			switch(ch)
 			{
@@ -126,17 +132,8 @@ public class EcommerceUI {
 					e.viewCustomer();
 					break;
 				}
+				
 				case "4":
-				{
-					e.deleteCustomer();
-					break;
-				}
-				case "5":
-				{
-					e.updateCustomer();
-					break;
-				}
-				case "6":
 				{
 					System.exit(0);
 				}
